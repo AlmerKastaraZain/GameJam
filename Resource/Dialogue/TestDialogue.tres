@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DialogueSO" load_steps=2 format=3 uid="uid://d21hritfmferh"]
+
+[ext_resource type="Script" path="res://Code/ScriptableObject/DialogueSO.gd" id="1_kassv"]
+
+[resource]
+script = ExtResource("1_kassv")
+player_name = "Lenin"
+npc_name = "Egg"
+dialogue = Array[String](["Hello", "Hi", "Len think that he is a femboy"])
+player_turn = Array[int]([1, 2, 3])

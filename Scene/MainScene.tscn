@@ -1,0 +1,137 @@
+[gd_scene load_steps=14 format=3 uid="uid://bv8b7spw72pdh"]
+
+[ext_resource type="Script" path="res://Code/Player/PlayerMovement.gd" id="1_m2lsv"]
+[ext_resource type="Texture2D" uid="uid://dsgfya1bbrdcn" path="res://icon.svg" id="1_yl4wi"]
+[ext_resource type="FontFile" uid="uid://x7xjdd3fgjrp" path="res://Art/Font/PixelifySans-VariableFont_wght.ttf" id="2_k41v0"]
+[ext_resource type="Script" path="res://Code/Player/PlayerInteract.gd" id="3_hljfo"]
+[ext_resource type="Script" path="res://Code/Interactable/DialogueInteractable.gd" id="4_uogjk"]
+[ext_resource type="Resource" uid="uid://d21hritfmferh" path="res://Resource/Dialogue/TestDialogue.tres" id="6_4exge"]
+[ext_resource type="Script" path="res://Code/Controller/DialogueController.gd" id="6_gl3xy"]
+[ext_resource type="Script" path="res://Code/Controller/PlayerController.gd" id="7_33wxa"]
+
+[sub_resource type="Theme" id="Theme_1bgwi"]
+default_font = ExtResource("2_k41v0")
+default_font_size = 16
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lstq8"]
+radius = 64.0078
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_77tad"]
+radius = 149.054
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxh1a"]
+size = Vector2(134, 124)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ge5y7"]
+radius = 66.2193
+
+[node name="MainScene" type="Node2D"]
+position = Vector2(0, 2)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+motion_mode = 1
+wall_min_slide_angle = 3.14159
+script = ExtResource("1_m2lsv")
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+
+[node name="Control" type="Control" parent="Player/PlayerCamera"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1152.0
+offset_top = -642.0
+offset_right = 1146.0
+offset_bottom = 648.0
+
+[node name="Dialogue" type="Panel" parent="Player/PlayerCamera/Control"]
+visible = false
+layout_mode = 0
+offset_left = 239.0
+offset_top = 859.0
+offset_right = 2072.0
+offset_bottom = 1252.0
+
+[node name="DialogueText" type="RichTextLabel" parent="Player/PlayerCamera/Control/Dialogue"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 121.0
+offset_right = 1802.0
+offset_bottom = 371.0
+theme = SubResource("Theme_1bgwi")
+theme_override_fonts/normal_font = ExtResource("2_k41v0")
+theme_override_font_sizes/normal_font_size = 64
+text = "dadadaddad"
+
+[node name="NameText" type="RichTextLabel" parent="Player/PlayerCamera/Control/Dialogue"]
+offset_left = 22.0
+offset_top = 26.0
+offset_right = 1800.0
+offset_bottom = 113.0
+theme = SubResource("Theme_1bgwi")
+theme_override_fonts/normal_font = ExtResource("2_k41v0")
+theme_override_font_sizes/normal_font_size = 64
+text = "DAVID"
+
+[node name="ActionText" type="RichTextLabel" parent="Player/PlayerCamera/Control/Dialogue"]
+offset_left = 22.0
+offset_top = 26.0
+offset_right = 1800.0
+offset_bottom = 369.0
+theme = SubResource("Theme_1bgwi")
+theme_override_fonts/normal_font = ExtResource("2_k41v0")
+theme_override_font_sizes/normal_font_size = 64
+text = "You hate when it smells bad"
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_yl4wi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_lstq8")
+
+[node name="InteractArea" type="Area2D" parent="Player"]
+script = ExtResource("3_hljfo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/InteractArea"]
+shape = SubResource("CircleShape2D_77tad")
+
+[node name="Interactable" type="StaticBody2D" parent="."]
+position = Vector2(619, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_wxh1a")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable"]
+position = Vector2(3, 3)
+texture = ExtResource("1_yl4wi")
+
+[node name="InteractArea" type="Area2D" parent="Interactable"]
+script = ExtResource("4_uogjk")
+dialogue = ExtResource("6_4exge")
+metadata/Interactable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/InteractArea"]
+shape = SubResource("CircleShape2D_ge5y7")
+
+[node name="Controller" type="Node2D" parent="."]
+
+[node name="DialogueController" type="Node2D" parent="Controller" node_paths=PackedStringArray("player_controller", "dialogue_panel", "dialogue_text", "dialogue_name", "dialogue_action", "next_char_timer")]
+script = ExtResource("6_gl3xy")
+player_controller = NodePath("../PlayerController")
+dialogue_panel = NodePath("../../Player/PlayerCamera/Control/Dialogue")
+dialogue_text = NodePath("../../Player/PlayerCamera/Control/Dialogue/DialogueText")
+dialogue_name = NodePath("../../Player/PlayerCamera/Control/Dialogue/NameText")
+dialogue_action = NodePath("../../Player/PlayerCamera/Control/Dialogue/ActionText")
+next_char_timer = NodePath("NextChar")
+
+[node name="NextChar" type="Timer" parent="Controller/DialogueController"]
+
+[node name="PlayerController" type="Node2D" parent="Controller" node_paths=PackedStringArray("player_movement", "player_interact", "dialogue_controller")]
+script = ExtResource("7_33wxa")
+player_movement = NodePath("../../Player")
+player_interact = NodePath("../../Player/InteractArea")
+dialogue_controller = NodePath("../DialogueController")
+
+[connection signal="timeout" from="Controller/DialogueController/NextChar" to="Controller/DialogueController" method="_on_next_char_timeout"]

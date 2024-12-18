@@ -16,7 +16,8 @@ var current_dialogue_object: DialogueSO
 var dialogue_text_selected : RichTextLabel
 
 func _ready() -> void:
-	next_char_timer.wait_time = next_char_wait_time                         
+	next_char_timer.wait_time = next_char_wait_time    
+	NPC_expression = null                     
 	pass
 
 func start_dialogue(dialogue: DialogueSO)-> void:
@@ -28,6 +29,11 @@ func start_dialogue(dialogue: DialogueSO)-> void:
 	_change_dialogue(current_dialogue_object, current_dialogue_index)
 	pass
 
+var NPC_expression : NPC
+func start_NPC_dialogue(dialogue: DialogueSO, npc: NPC)-> void:
+	NPC_expression = npc
+	start_dialogue(dialogue);
+	pass
 
 func get_skip_input_dialogue()->void:
 	if Input.is_action_just_pressed("interact") && dialogue_has_ended:
@@ -40,11 +46,18 @@ func _next_dialogue()->void:
 	pass
 
 func _end_dialogue()->void:
+	NPC_expression.NPC_AnimationPlayer.reset_to_default()
+	NPC_expression = null
 	dialogue_panel.visible = false
 	player_controller.change_state_to_active()
 	pass
 
 var current_dialogue = ""
+
+func handle_expression(expression: int)->void:
+	NPC_expression.NPC_AnimationPlayer.change_expression(expression)
+	pass
+
 func _change_dialogue(dialogue: DialogueSO, n: int):
 	if (len(dialogue.dialogue) <= current_dialogue_index):
 		_end_dialogue()
@@ -54,29 +67,40 @@ func _change_dialogue(dialogue: DialogueSO, n: int):
 	dialogue_action.text = ""
 	current_char = 0
 	
-	current_dialogue = dialogue.dialogue[n]
+	current_dialogue = dialogue.dialogue[n].dialogue
+	if NPC_expression != null:
+		handle_expression(dialogue.dialogue[n].NPC_expression)
+		dialogue.npc_name = NPC_expression.NPC_name
+	else:
+		dialogue.npc_name = "Unnamed"
 	
-	if (dialogue.player_turn[n] == 3):
-		dialogue_text.visible = false
-		dialogue_name.visible = false
-		dialogue_action.visible = true
+	if (dialogue.dialogue[n].player_turn == 3):
+		show_action_text()
 		dialogue_text_selected = dialogue_action
-	elif (dialogue.player_turn[n] == 2):
-		dialogue_text.visible = true
-		dialogue_name.visible = true
-		dialogue_action.visible = false
+	elif (dialogue.dialogue[n].player_turn == 2):
+		show_dialogue_text()
 		dialogue_name.text = dialogue.npc_name
 		dialogue_text_selected = dialogue_text
 	else:
-		dialogue_text.visible = true
-		dialogue_name.visible = true
-		dialogue_action.visible = false
+		show_dialogue_text()
 		dialogue_name.text = dialogue.player_name
 		dialogue_text_selected = dialogue_text
-	print(dialogue.char_per_second[n])
-	next_char_timer.wait_time = dialogue.char_per_second[n]
-	next_char_timer.start()		
+	
+	next_char_timer.wait_time = dialogue.dialogue[n].char_per_second
+	next_char_timer.start()
 	current_dialogue_index += 1
+
+func show_action_text()->void:
+	dialogue_text.visible = false
+	dialogue_name.visible = false
+	dialogue_action.visible = true
+	pass
+	
+func show_dialogue_text()->void:
+	dialogue_text.visible = true
+	dialogue_name.visible = true
+	dialogue_action.visible = false
+	pass
 
 var current_char = 0
 # This add a character when timer timeout

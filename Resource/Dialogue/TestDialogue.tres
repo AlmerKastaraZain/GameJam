@@ -1,11 +1,30 @@
-[gd_resource type="Resource" script_class="DialogueSO" load_steps=2 format=3 uid="uid://d21hritfmferh"]
+[gd_resource type="Resource" script_class="DialogueSO" load_steps=6 format=3 uid="uid://d21hritfmferh"]
 
+[ext_resource type="Script" path="res://Code/ScriptableObject/SingleDialogueSO.gd" id="1_iwa0c"]
 [ext_resource type="Script" path="res://Code/ScriptableObject/DialogueSO.gd" id="1_kassv"]
+
+[sub_resource type="Resource" id="Resource_5qnrl"]
+script = ExtResource("1_iwa0c")
+dialogue = "Hello"
+player_turn = 1
+NPC_expression = 1
+char_per_second = 0.2
+
+[sub_resource type="Resource" id="Resource_xaagv"]
+script = ExtResource("1_iwa0c")
+dialogue = "Hello"
+player_turn = 2
+NPC_expression = 3
+char_per_second = 0.5
+
+[sub_resource type="Resource" id="Resource_l4ksi"]
+script = ExtResource("1_iwa0c")
+dialogue = "AAAAAH"
+player_turn = 2
+NPC_expression = 2
+char_per_second = 0.5
 
 [resource]
 script = ExtResource("1_kassv")
 player_name = "Lenin"
-npc_name = "Egg"
-dialogue = Array[String](["Hello", "Hi", "Len think that he is a femboy"])
-player_turn = Array[int]([1, 2, 3])
-char_per_second = Array[float]([0.5, 0.1, 0.1])
+dialogue = Array[ExtResource("1_iwa0c")]([SubResource("Resource_5qnrl"), SubResource("Resource_xaagv"), SubResource("Resource_l4ksi")])

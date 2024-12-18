@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ItemSO" load_steps=2 format=3 uid="uid://ciuuxu5pr5fyy"]
+
+[ext_resource type="Script" path="res://Code/ScriptableObject/ItemSO.gd" id="1_ylt4b"]
+
+[resource]
+script = ExtResource("1_ylt4b")
+name = "Len Drawing"

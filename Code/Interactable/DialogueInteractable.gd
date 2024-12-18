@@ -1,12 +1,13 @@
 extends Interactable
 
-var dialogue_controller : DialogueController
-@export var dialogue : DialogueSO
+class_name DialogueInteractable
+var _dialogue_controller : DialogueController
+@export var _dialogue : DialogueSO
 
 func _ready() -> void:
-	dialogue_controller = get_tree().root.get_node("./MainScene/Controller/DialogueController")
+	_dialogue_controller = get_tree().root.get_node("./Scene/Controller/DialogueController")
 	pass
 	 
 func action() -> void:
-	dialogue_controller.start_dialogue(dialogue)
+	_dialogue_controller.start_dialogue(_dialogue)
 	pass

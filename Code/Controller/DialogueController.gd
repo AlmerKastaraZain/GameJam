@@ -9,6 +9,7 @@ class_name DialogueController
 
 @export var next_char_timer : Timer
 @export var next_char_wait_time = 0.075
+
 var dialogue_has_ended = true
 var current_dialogue_index = 0
 var current_dialogue_object: DialogueSO
@@ -50,6 +51,7 @@ func _change_dialogue(dialogue: DialogueSO, n: int):
 		return
 	
 	dialogue_text.text = ""
+	dialogue_action.text = ""
 	current_char = 0
 	
 	current_dialogue = dialogue.dialogue[n]
@@ -71,7 +73,8 @@ func _change_dialogue(dialogue: DialogueSO, n: int):
 		dialogue_action.visible = false
 		dialogue_name.text = dialogue.player_name
 		dialogue_text_selected = dialogue_text
-	
+	print(dialogue.char_per_second[n])
+	next_char_timer.wait_time = dialogue.char_per_second[n]
 	next_char_timer.start()		
 	current_dialogue_index += 1
 

@@ -1,17 +1,22 @@
 extends Node
 
 class_name PlayerController
-var current_player_state = PlayerState.Active
+var _current_player_state = PlayerState.Active
+var _current_held_item : ItemSO
+
+func change_current_held_item(item: ItemSO) -> void:
+	_current_held_item = item
+	pass
 
 func change_state_to_inactive() -> void:
-	current_player_state = PlayerState.Inactive
+	_current_player_state = PlayerState.Inactive
 	pass
-	
+
 func change_state_to_dialogue() -> void:
-	current_player_state = PlayerState.Dialogue
+	_current_player_state = PlayerState.Dialogue
 	pass
 func change_state_to_active() -> void:
-	current_player_state = PlayerState.Active
+	_current_player_state = PlayerState.Active
 	pass
 
 enum PlayerState {
@@ -26,9 +31,9 @@ enum PlayerState {
 
 
 func _process(delta: float) -> void:
-	if current_player_state == PlayerState.Active:
+	if _current_player_state == PlayerState.Active:
 		player_movement.move()
 		player_interact.scan_for_interaction()
-	if current_player_state == PlayerState.Dialogue:
+	if _current_player_state == PlayerState.Dialogue:
 		dialogue_controller.get_skip_input_dialogue()
 	pass

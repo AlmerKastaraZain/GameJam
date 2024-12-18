@@ -8,3 +8,4 @@ player_name = "Lenin"
 npc_name = "Egg"
 dialogue = Array[String](["Hello", "Hi", "Len think that he is a femboy"])
 player_turn = Array[int]([1, 2, 3])
+char_per_second = Array[float]([0.5, 0.1, 0.1])

@@ -198,6 +198,7 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="Control" type="Control" parent="PlayerCamera"]
+z_index = 20
 layout_mode = 3
 anchors_preset = 0
 offset_left = -283.0

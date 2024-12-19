@@ -11,7 +11,7 @@
 shader = ExtResource("2_hnj6k")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t32j5"]
-size = Vector2(48, 104)
+size = Vector2(41, 72)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ge5y7"]
 radius = 25.4951
@@ -209,7 +209,7 @@ hframes = 4
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 0)
+position = Vector2(-3.5, 13)
 shape = SubResource("RectangleShape2D_t32j5")
 
 [node name="InteractArea" type="Area2D" parent="."]

@@ -3,6 +3,12 @@ extends CharacterBody2D
 class_name PlayerMovement
 
 @export var _movement_speed = 100
+@export var player_interact : PlayerInteract
+@export var dialogue_panel : Panel
+@export var dialogue_text : RichTextLabel
+@export var name_text : RichTextLabel
+@export var action_text : RichTextLabel
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -21,7 +21,11 @@ class ExpressionAnimation:
 	const Neutral_Down = "Neutral_Down"
 var expression_animation = ExpressionAnimation
 
-@export var player: PlayerMovement
+var player: PlayerMovement
+
+func _ready() -> void:
+	player = get_parent().player
+	pass
 
 @export var left : Node2D
 @export var right : Node2D

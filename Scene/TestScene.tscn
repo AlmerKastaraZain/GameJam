@@ -1,197 +1,18 @@
-[gd_scene load_steps=50 format=3 uid="uid://bv8b7spw72pdh"]
+[gd_scene load_steps=26 format=3 uid="uid://bv8b7spw72pdh"]
 
-[ext_resource type="Script" path="res://Code/Player/PlayerMovement.gd" id="1_ouvk6"]
-[ext_resource type="FontFile" uid="uid://biresh6sibbjw" path="res://Art/Font/static/PixelifySans-Regular.ttf" id="2_apfxm"]
-[ext_resource type="Texture2D" uid="uid://dsiskbtqhnb1f" path="res://Art/Character/Nurse.png" id="3_f45ba"]
+[ext_resource type="PackedScene" uid="uid://detkwat0v8a1x" path="res://Prefab/player.tscn" id="1_yix85"]
 [ext_resource type="Shader" path="res://Art/Shader/PixelArtShaders.gdshader" id="3_rxob1"]
 [ext_resource type="Texture2D" uid="uid://dsgfya1bbrdcn" path="res://icon.svg" id="3_ub4fo"]
-[ext_resource type="Script" path="res://Code/Player/PlayerInteract.gd" id="4_rfqt7"]
 [ext_resource type="Script" path="res://Code/Interactable/DialogueInteractable.gd" id="5_d83nn"]
-[ext_resource type="Script" path="res://Code/Player/PlayerAnimation.gd" id="6_5qntf"]
 [ext_resource type="Script" path="res://Code/Interactable/ItemDialogueInteractable.gd" id="6_bnlqi"]
 [ext_resource type="Resource" uid="uid://ciuuxu5pr5fyy" path="res://Resource/Item/ItemTest.tres" id="7_one1j"]
 [ext_resource type="Script" path="res://Code/ScriptableObject/DialogueSO.gd" id="8_kxplc"]
 [ext_resource type="Script" path="res://Code/Controller/DialogueController.gd" id="9_t4qhd"]
 [ext_resource type="Script" path="res://Code/Controller/PlayerController.gd" id="10_54wrw"]
 [ext_resource type="Script" path="res://Code/ScriptableObject/SingleDialogueSO.gd" id="11_p71sn"]
+[ext_resource type="Texture2D" uid="uid://bby7fcdpk7fh8" path="res://Art/Character/Doctor.png" id="12_ih5lv"]
+[ext_resource type="PackedScene" uid="uid://baoksm6lscyk4" path="res://Prefab/grandma.tscn" id="13_mdr1x"]
 [ext_resource type="Script" path="res://Code/Character/NPC.gd" id="13_qlys3"]
-[ext_resource type="Script" path="res://Code/Character/Grandma/GrandmaExpression.gd" id="15_c2ctt"]
-[ext_resource type="Texture2D" uid="uid://ie145ga1thpg" path="res://Art/Character/GrannyFixed.png" id="15_jnho0"]
-[ext_resource type="Resource" uid="uid://d21hritfmferh" path="res://Resource/Dialogue/TestDialogue.tres" id="15_pws22"]
-
-[sub_resource type="Theme" id="Theme_1bgwi"]
-default_base_scale = 1.0
-default_font = ExtResource("2_apfxm")
-default_font_size = 14
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnsc1"]
-shader = ExtResource("3_rxob1")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lstq8"]
-radius = 16.2788
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_77tad"]
-radius = 30.8058
-
-[sub_resource type="Animation" id="Animation_vvsx3"]
-resource_name = "Down"
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 0, 5, 0]
-}
-
-[sub_resource type="Animation" id="Animation_pm76x"]
-resource_name = "Down_Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_enyif"]
-resource_name = "Left"
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [11, 3, 10, 3]
-}
-
-[sub_resource type="Animation" id="Animation_01f7a"]
-resource_name = "Left_Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-
-[sub_resource type="Animation" id="Animation_aiqe2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_6oulk"]
-resource_name = "Right"
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [9, 2, 8, 2]
-}
-
-[sub_resource type="Animation" id="Animation_bqlix"]
-resource_name = "Right_Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_bhmlb"]
-resource_name = "Up"
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [6, 1, 7, 1]
-}
-
-[sub_resource type="Animation" id="Animation_f6lo0"]
-resource_name = "Up_Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmncv"]
-_data = {
-"Down": SubResource("Animation_vvsx3"),
-"Down_Idle": SubResource("Animation_pm76x"),
-"Left": SubResource("Animation_enyif"),
-"Left_Idle": SubResource("Animation_01f7a"),
-"RESET": SubResource("Animation_aiqe2"),
-"Right": SubResource("Animation_6oulk"),
-"Right_Idle": SubResource("Animation_bqlix"),
-"Up": SubResource("Animation_bhmlb"),
-"Up_Idle": SubResource("Animation_f6lo0")
-}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxh1a"]
 size = Vector2(134, 124)
@@ -202,21 +23,39 @@ radius = 66.2193
 [sub_resource type="Resource" id="Resource_0q626"]
 script = ExtResource("8_kxplc")
 player_name = "Lenin"
+no_npc_expression = false
 dialogue = Array[ExtResource("11_p71sn")]([])
 
 [sub_resource type="Resource" id="Resource_agdui"]
 script = ExtResource("8_kxplc")
 player_name = "Lenin"
+no_npc_expression = false
 dialogue = Array[ExtResource("11_p71sn")]([])
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpwhk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50d83"]
 shader = ExtResource("3_rxob1")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t32j5"]
-size = Vector2(48, 104)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0eag"]
+size = Vector2(20, 16)
 
-[sub_resource type="Animation" id="Animation_2d82o"]
-length = 0.001
+[sub_resource type="Resource" id="Resource_8wm60"]
+script = ExtResource("11_p71sn")
+dialogue = "Yo grandma is dead yo"
+player_turn = 2
+NPC_expression = 0
+char_per_second = 0.25
+
+[sub_resource type="Resource" id="Resource_yqptc"]
+script = ExtResource("8_kxplc")
+player_name = "Lenin"
+no_npc_expression = false
+dialogue = Array[ExtResource("11_p71sn")]([SubResource("Resource_8wm60")])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e4hid"]
+radius = 11.0
+
+[sub_resource type="Animation" id="Animation_uuu5p"]
+resource_name = "Default"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -230,9 +69,8 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_e8cwx"]
-resource_name = "Neutral_Left"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_5ssqb"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -246,237 +84,17 @@ tracks/0/keys = {
 "values": [5]
 }
 
-[sub_resource type="Animation" id="Animation_pcilf"]
-resource_name = "Neutral_Down"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_kxvjw"]
-resource_name = "Neutral_Right"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_duy02"]
-resource_name = "Happy_Left"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-
-[sub_resource type="Animation" id="Animation_byy2k"]
-resource_name = "Happy_Down"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_vyreb"]
-resource_name = "Happy_Right"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-
-[sub_resource type="Animation" id="Animation_f331u"]
-resource_name = "Angry_Down"
-length = 0.5
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [8, 9]
-}
-
-[sub_resource type="Animation" id="Animation_w61x7"]
-resource_name = "Angry_Left"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [13, 12]
-}
-
-[sub_resource type="Animation" id="Animation_xfstg"]
-resource_name = "Angry_Right"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [10, 11]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fl4x4"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8cont"]
 _data = {
-"Angry_Down": SubResource("Animation_f331u"),
-"Angry_Left": SubResource("Animation_w61x7"),
-"Angry_Right": SubResource("Animation_xfstg"),
-"Happy_Down": SubResource("Animation_byy2k"),
-"Happy_Left": SubResource("Animation_duy02"),
-"Happy_Right": SubResource("Animation_vyreb"),
-"Neutral_Down": SubResource("Animation_pcilf"),
-"Neutral_Left": SubResource("Animation_e8cwx"),
-"Neutral_Right": SubResource("Animation_kxvjw"),
-"RESET": SubResource("Animation_2d82o")
+"Default": SubResource("Animation_uuu5p"),
+"RESET": SubResource("Animation_5ssqb")
 }
 
 [node name="Scene" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(0, 2)
 
-[node name="Player" type="CharacterBody2D" parent="."]
-y_sort_enabled = true
-position = Vector2(1, 0)
-motion_mode = 1
-wall_min_slide_angle = 3.14159
-script = ExtResource("1_ouvk6")
-
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-
-[node name="Control" type="Control" parent="Player/PlayerCamera"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -283.0
-offset_top = -159.0
-offset_right = 290.0
-offset_bottom = 165.0
-
-[node name="Dialogue" type="Panel" parent="Player/PlayerCamera/Control"]
-visible = false
-layout_mode = 0
-offset_left = 45.0
-offset_top = 213.0
-offset_right = 526.0
-offset_bottom = 314.0
-
-[node name="DialogueText" type="RichTextLabel" parent="Player/PlayerCamera/Control/Dialogue"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 8.0
-offset_top = 34.0
-offset_right = 474.0
-offset_bottom = 93.0
-theme = SubResource("Theme_1bgwi")
-text = "dadadaddad"
-
-[node name="NameText" type="RichTextLabel" parent="Player/PlayerCamera/Control/Dialogue"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 8.0
-offset_top = 10.0
-offset_right = 458.0
-offset_bottom = 31.0
-theme = SubResource("Theme_1bgwi")
-text = "DAVID"
-
-[node name="ActionText" type="RichTextLabel" parent="Player/PlayerCamera/Control/Dialogue"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 7.0
-offset_top = 8.0
-offset_right = 475.0
-offset_bottom = 97.0
-theme = SubResource("Theme_1bgwi")
-text = "You hate when it smells bad"
-
-[node name="PlayerSprite" type="Sprite2D" parent="Player"]
-texture_filter = 2
-material = SubResource("ShaderMaterial_qnsc1")
-texture = ExtResource("3_f45ba")
-hframes = 4
-vframes = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 30)
-shape = SubResource("CircleShape2D_lstq8")
-
-[node name="InteractArea" type="Area2D" parent="Player"]
-position = Vector2(0, 29)
-script = ExtResource("4_rfqt7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/InteractArea"]
-shape = SubResource("CircleShape2D_77tad")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" node_paths=PackedStringArray("player")]
-libraries = {
-"": SubResource("AnimationLibrary_rmncv")
-}
-script = ExtResource("6_5qntf")
-player = NodePath("..")
+[node name="Player" parent="." instance=ExtResource("1_yix85")]
 
 [node name="Interactable" type="StaticBody2D" parent="."]
 position = Vector2(619, 6)
@@ -518,71 +136,56 @@ metadata/Interactable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableItem/InteractArea"]
 shape = SubResource("CircleShape2D_ge5y7")
 
-[node name="Grandma" type="StaticBody2D" parent="." node_paths=PackedStringArray("NPC_AnimationPlayer")]
-y_sort_enabled = true
-position = Vector2(192, -82)
-script = ExtResource("13_qlys3")
-NPC_name = "Grandma"
-NPC_AnimationPlayer = NodePath("AnimationPlayer")
-
-[node name="Sprite2D" type="Sprite2D" parent="Grandma"]
-texture_filter = 2
-material = SubResource("ShaderMaterial_dpwhk")
-position = Vector2(-3, 0)
-texture = ExtResource("15_jnho0")
-hframes = 4
-vframes = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Grandma"]
-position = Vector2(-2, 0)
-shape = SubResource("RectangleShape2D_t32j5")
-
-[node name="InteractArea" type="Area2D" parent="Grandma"]
-position = Vector2(-1, 17)
-script = ExtResource("5_d83nn")
-_dialogue = ExtResource("15_pws22")
-metadata/Interactable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Grandma/InteractArea"]
-visible = false
-shape = SubResource("CircleShape2D_ge5y7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Grandma" node_paths=PackedStringArray("player", "left", "right", "down")]
-libraries = {
-"": SubResource("AnimationLibrary_fl4x4")
-}
-script = ExtResource("15_c2ctt")
-player = NodePath("../../Player")
-left = NodePath("Left")
-right = NodePath("Right")
-down = NodePath("Down")
-
-[node name="Left" type="Node2D" parent="Grandma/AnimationPlayer"]
-position = Vector2(130, -74)
-
-[node name="Right" type="Node2D" parent="Grandma/AnimationPlayer"]
-position = Vector2(254, -75)
-
-[node name="Down" type="Node2D" parent="Grandma/AnimationPlayer"]
-position = Vector2(191, -4)
+[node name="Grandma" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_mdr1x")]
+player = NodePath("../Player")
 
 [node name="Controller" type="Node2D" parent="."]
 
-[node name="DialogueController" type="Node2D" parent="Controller" node_paths=PackedStringArray("player_controller", "dialogue_panel", "dialogue_text", "dialogue_name", "dialogue_action", "next_char_timer")]
+[node name="DialogueController" type="Node2D" parent="Controller" node_paths=PackedStringArray("player_controller", "player", "next_char_timer")]
 script = ExtResource("9_t4qhd")
 player_controller = NodePath("../PlayerController")
-dialogue_panel = NodePath("../../Player/PlayerCamera/Control/Dialogue")
-dialogue_text = NodePath("../../Player/PlayerCamera/Control/Dialogue/DialogueText")
-dialogue_name = NodePath("../../Player/PlayerCamera/Control/Dialogue/NameText")
-dialogue_action = NodePath("../../Player/PlayerCamera/Control/Dialogue/ActionText")
+player = NodePath("../../Player")
 next_char_timer = NodePath("NextChar")
 
 [node name="NextChar" type="Timer" parent="Controller/DialogueController"]
 
-[node name="PlayerController" type="Node2D" parent="Controller" node_paths=PackedStringArray("player_movement", "player_interact", "dialogue_controller")]
+[node name="PlayerController" type="Node2D" parent="Controller" node_paths=PackedStringArray("player_movement", "dialogue_controller")]
 script = ExtResource("10_54wrw")
 player_movement = NodePath("../../Player")
-player_interact = NodePath("../../Player/InteractArea")
 dialogue_controller = NodePath("../DialogueController")
+
+[node name="GoodDoctor" type="StaticBody2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(100, -83)
+script = ExtResource("13_qlys3")
+NPC_name = "Doctor"
+player = NodePath("../Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="GoodDoctor"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_50d83")
+position = Vector2(-3, 0)
+texture = ExtResource("12_ih5lv")
+hframes = 4
+vframes = 3
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoodDoctor"]
+position = Vector2(-4, 27)
+shape = SubResource("RectangleShape2D_w0eag")
+
+[node name="InteractArea" type="Area2D" parent="GoodDoctor"]
+position = Vector2(-1, 17)
+script = ExtResource("5_d83nn")
+_dialogue = SubResource("Resource_yqptc")
+metadata/Interactable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoodDoctor/InteractArea"]
+position = Vector2(-3, 11)
+shape = SubResource("CircleShape2D_e4hid")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GoodDoctor"]
+libraries = {
+"": SubResource("AnimationLibrary_8cont")
+}
 
 [connection signal="timeout" from="Controller/DialogueController/NextChar" to="Controller/DialogueController" method="_on_next_char_timeout"]

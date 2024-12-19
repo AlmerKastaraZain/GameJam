@@ -2,10 +2,11 @@ extends Node
 
 class_name DialogueController
 @export var player_controller : PlayerController
-@export var dialogue_panel : Panel
-@export var dialogue_text : RichTextLabel
-@export var dialogue_name : RichTextLabel
-@export var dialogue_action : RichTextLabel
+@export var player : PlayerMovement
+var dialogue_panel : Panel
+var dialogue_text : RichTextLabel
+var dialogue_name : RichTextLabel
+var dialogue_action : RichTextLabel
 
 @export var next_char_timer : Timer
 @export var next_char_wait_time = 0.075
@@ -18,6 +19,10 @@ var dialogue_text_selected : RichTextLabel
 func _ready() -> void:
 	next_char_timer.wait_time = next_char_wait_time    
 	NPC_expression = null                     
+	dialogue_panel = player.dialogue_panel
+	dialogue_text = player.dialogue_text
+	dialogue_name = player.name_text
+	dialogue_action = player.action_text
 	pass
 
 func start_dialogue(dialogue: DialogueSO)-> void:
@@ -46,7 +51,8 @@ func _next_dialogue()->void:
 	pass
 
 func _end_dialogue()->void:
-	NPC_expression.NPC_AnimationPlayer.reset_to_default()
+	if NPC_expression.NPC_AnimationPlayer != null:
+		NPC_expression.NPC_AnimationPlayer.reset_to_default()
 	NPC_expression = null
 	dialogue_panel.visible = false
 	player_controller.change_state_to_active()
@@ -68,11 +74,14 @@ func _change_dialogue(dialogue: DialogueSO, n: int):
 	current_char = 0
 	
 	current_dialogue = dialogue.dialogue[n].dialogue
-	if NPC_expression != null:
+	if NPC_expression != null && dialogue.dialogue[n].NPC_expression != 0:
 		handle_expression(dialogue.dialogue[n].NPC_expression)
+		dialogue.npc_name = NPC_expression.NPC_name
+	elif NPC_expression != null && dialogue.dialogue[n].NPC_expression == 0:
 		dialogue.npc_name = NPC_expression.NPC_name
 	else:
 		dialogue.npc_name = "Unnamed"
+
 	
 	if (dialogue.dialogue[n].player_turn == 3):
 		show_action_text()

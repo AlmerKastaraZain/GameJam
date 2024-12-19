@@ -1,0 +1,240 @@
+[gd_scene load_steps=21 format=3 uid="uid://baoksm6lscyk4"]
+
+[ext_resource type="Script" path="res://Code/Character/NPC.gd" id="1_2d3s2"]
+[ext_resource type="Shader" path="res://Art/Shader/PixelArtShaders.gdshader" id="2_hnj6k"]
+[ext_resource type="Texture2D" uid="uid://ie145ga1thpg" path="res://Art/Character/GrannyFixed.png" id="3_qrtky"]
+[ext_resource type="Script" path="res://Code/Interactable/DialogueInteractable.gd" id="4_dvhbb"]
+[ext_resource type="Resource" uid="uid://d21hritfmferh" path="res://Resource/Dialogue/TestDialogue.tres" id="5_y7iig"]
+[ext_resource type="Script" path="res://Code/Character/Grandma/GrandmaExpression.gd" id="6_awwn7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpwhk"]
+shader = ExtResource("2_hnj6k")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t32j5"]
+size = Vector2(48, 104)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ge5y7"]
+radius = 25.4951
+
+[sub_resource type="Animation" id="Animation_f331u"]
+resource_name = "Angry_Down"
+length = 0.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_w61x7"]
+resource_name = "Angry_Left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [13, 12]
+}
+
+[sub_resource type="Animation" id="Animation_xfstg"]
+resource_name = "Angry_Right"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_byy2k"]
+resource_name = "Happy_Down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_duy02"]
+resource_name = "Happy_Left"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_vyreb"]
+resource_name = "Happy_Right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_pcilf"]
+resource_name = "Neutral_Down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_e8cwx"]
+resource_name = "Neutral_Left"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_kxvjw"]
+resource_name = "Neutral_Right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_2d82o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fl4x4"]
+_data = {
+"Angry_Down": SubResource("Animation_f331u"),
+"Angry_Left": SubResource("Animation_w61x7"),
+"Angry_Right": SubResource("Animation_xfstg"),
+"Happy_Down": SubResource("Animation_byy2k"),
+"Happy_Left": SubResource("Animation_duy02"),
+"Happy_Right": SubResource("Animation_vyreb"),
+"Neutral_Down": SubResource("Animation_pcilf"),
+"Neutral_Left": SubResource("Animation_e8cwx"),
+"Neutral_Right": SubResource("Animation_kxvjw"),
+"RESET": SubResource("Animation_2d82o")
+}
+
+[node name="Grandma" type="StaticBody2D" node_paths=PackedStringArray("NPC_AnimationPlayer")]
+y_sort_enabled = true
+position = Vector2(192, -82)
+script = ExtResource("1_2d3s2")
+NPC_name = "Grandma"
+NPC_AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_dpwhk")
+position = Vector2(-3, 0)
+texture = ExtResource("3_qrtky")
+hframes = 4
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_t32j5")
+
+[node name="InteractArea" type="Area2D" parent="."]
+position = Vector2(-1, 17)
+script = ExtResource("4_dvhbb")
+_dialogue = ExtResource("5_y7iig")
+metadata/Interactable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("CircleShape2D_ge5y7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("left", "right", "down")]
+libraries = {
+"": SubResource("AnimationLibrary_fl4x4")
+}
+script = ExtResource("6_awwn7")
+left = NodePath("Left")
+right = NodePath("Right")
+down = NodePath("Down")
+
+[node name="Left" type="Node2D" parent="AnimationPlayer"]
+position = Vector2(130, -74)
+
+[node name="Right" type="Node2D" parent="AnimationPlayer"]
+position = Vector2(254, -75)
+
+[node name="Down" type="Node2D" parent="AnimationPlayer"]
+position = Vector2(191, -4)

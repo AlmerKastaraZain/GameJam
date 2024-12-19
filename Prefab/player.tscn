@@ -1,0 +1,269 @@
+[gd_scene load_steps=21 format=3 uid="uid://detkwat0v8a1x"]
+
+[ext_resource type="Script" path="res://Code/Player/PlayerMovement.gd" id="1_045y5"]
+[ext_resource type="FontFile" uid="uid://biresh6sibbjw" path="res://Art/Font/static/PixelifySans-Regular.ttf" id="2_ljiol"]
+[ext_resource type="Shader" path="res://Art/Shader/PixelArtShaders.gdshader" id="3_2f8iv"]
+[ext_resource type="Texture2D" uid="uid://dsiskbtqhnb1f" path="res://Art/Character/Nurse.png" id="4_lxprm"]
+[ext_resource type="Script" path="res://Code/Player/PlayerInteract.gd" id="5_vq44c"]
+[ext_resource type="Script" path="res://Code/Player/PlayerAnimation.gd" id="6_6ad5f"]
+
+[sub_resource type="Theme" id="Theme_1bgwi"]
+default_base_scale = 1.0
+default_font = ExtResource("2_ljiol")
+default_font_size = 14
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnsc1"]
+shader = ExtResource("3_2f8iv")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lstq8"]
+radius = 16.2788
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_77tad"]
+radius = 22.0227
+
+[sub_resource type="Animation" id="Animation_vvsx3"]
+resource_name = "Down"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 0, 5, 0]
+}
+
+[sub_resource type="Animation" id="Animation_pm76x"]
+resource_name = "Down_Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_enyif"]
+resource_name = "Left"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [11, 3, 10, 3]
+}
+
+[sub_resource type="Animation" id="Animation_01f7a"]
+resource_name = "Left_Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_aiqe2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6oulk"]
+resource_name = "Right"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 2, 8, 2]
+}
+
+[sub_resource type="Animation" id="Animation_bqlix"]
+resource_name = "Right_Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_bhmlb"]
+resource_name = "Up"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 1, 7, 1]
+}
+
+[sub_resource type="Animation" id="Animation_f6lo0"]
+resource_name = "Up_Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmncv"]
+_data = {
+"Down": SubResource("Animation_vvsx3"),
+"Down_Idle": SubResource("Animation_pm76x"),
+"Left": SubResource("Animation_enyif"),
+"Left_Idle": SubResource("Animation_01f7a"),
+"RESET": SubResource("Animation_aiqe2"),
+"Right": SubResource("Animation_6oulk"),
+"Right_Idle": SubResource("Animation_bqlix"),
+"Up": SubResource("Animation_bhmlb"),
+"Up_Idle": SubResource("Animation_f6lo0")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_interact", "dialogue_panel", "dialogue_text", "name_text", "action_text")]
+y_sort_enabled = true
+position = Vector2(1, 0)
+motion_mode = 1
+wall_min_slide_angle = 3.14159
+script = ExtResource("1_045y5")
+player_interact = NodePath("InteractArea")
+dialogue_panel = NodePath("PlayerCamera/Control/Dialogue")
+dialogue_text = NodePath("PlayerCamera/Control/Dialogue/DialogueText")
+name_text = NodePath("PlayerCamera/Control/Dialogue/NameText")
+action_text = NodePath("PlayerCamera/Control/Dialogue/ActionText")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Control" type="Control" parent="PlayerCamera"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -283.0
+offset_top = -159.0
+offset_right = 290.0
+offset_bottom = 165.0
+
+[node name="Dialogue" type="Panel" parent="PlayerCamera/Control"]
+visible = false
+layout_mode = 0
+offset_left = 45.0
+offset_top = 213.0
+offset_right = 526.0
+offset_bottom = 314.0
+
+[node name="DialogueText" type="RichTextLabel" parent="PlayerCamera/Control/Dialogue"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 34.0
+offset_right = 474.0
+offset_bottom = 93.0
+theme = SubResource("Theme_1bgwi")
+text = "dadadaddad"
+
+[node name="NameText" type="RichTextLabel" parent="PlayerCamera/Control/Dialogue"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 458.0
+offset_bottom = 31.0
+theme = SubResource("Theme_1bgwi")
+text = "DAVID"
+
+[node name="ActionText" type="RichTextLabel" parent="PlayerCamera/Control/Dialogue"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 475.0
+offset_bottom = 97.0
+theme = SubResource("Theme_1bgwi")
+text = "You hate when it smells bad"
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_qnsc1")
+texture = ExtResource("4_lxprm")
+hframes = 4
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 30)
+shape = SubResource("CircleShape2D_lstq8")
+
+[node name="InteractArea" type="Area2D" parent="."]
+position = Vector2(0, 29)
+script = ExtResource("5_vq44c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("CircleShape2D_77tad")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("player")]
+libraries = {
+"": SubResource("AnimationLibrary_rmncv")
+}
+script = ExtResource("6_6ad5f")
+player = NodePath("..")

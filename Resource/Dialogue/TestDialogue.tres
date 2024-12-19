@@ -27,4 +27,5 @@ char_per_second = 0.5
 [resource]
 script = ExtResource("1_kassv")
 player_name = "Lenin"
+no_npc_expression = false
 dialogue = Array[ExtResource("1_iwa0c")]([SubResource("Resource_5qnrl"), SubResource("Resource_xaagv"), SubResource("Resource_l4ksi")])

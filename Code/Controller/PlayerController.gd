@@ -26,9 +26,11 @@ enum PlayerState {
 }
 
 @export var player_movement: PlayerMovement
-@export var player_interact: PlayerInteract
+var player_interact: PlayerInteract
 @export var dialogue_controller: DialogueController
 
+func _ready() -> void:
+	player_interact = player_movement.player_interact
 
 func _process(delta: float) -> void:
 	if _current_player_state == PlayerState.Active:
